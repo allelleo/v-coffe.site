@@ -65,7 +65,8 @@ class GetRecipe(View):
             'media': MEDIA_URL,
             'recipe': CurrentRecipe,
             'ingredients': CurrentRecipe.ingredients.split("\n"),
-            'steps': steps
+            'steps': steps,
+            'type': CurrentRecipe._type
         }
 
     def get(self, request, recipe):
