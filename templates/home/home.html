@@ -19,14 +19,18 @@
             <br>
 
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="icon-box">
-                        <i class="bi bi-card-checklist"></i>
-                        <h3><a href="">Lorem Ipsum</a></h3>
-                        <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
-                            cupiditate non provident</p>
+                <a href="{% url 'all_recipes' %}">
+                    <div class="col-lg-4">
+                        <div class="icon-box">
+                            <i class="bi bi-list-check"></i>
+                            <h3><a href="">Все рецепты</a></h3>
+                            <p>Посмотрите все рецепты на нашем сайте</p>
+                            <br>
+                            <div class="read-more"> <a href="{% url 'all_recipes' %}">Смотреть</a></div>
+                        </div>
                     </div>
-                </div>
+                </a>
+
                 <div class="col-lg-4 mt-4 mt-lg-0">
                     <div class="icon-box">
                         <i class="bi bi-bar-chart"></i>
@@ -175,7 +179,8 @@
     <section id="features" class="features section-bg">
         <div class="container aos-init aos-animate" data-aos="fade-up">
             <ul class="nav nav-tabs row g-2 d-flex" role="tablist">
-                <li class="nav-item col-3" role="presentation"><a class="nav-link active show main-color" data-bs-toggle="tab"
+                <li class="nav-item col-3" role="presentation"><a class="nav-link active show main-color"
+                                                                  data-bs-toggle="tab"
                                                                   data-bs-target="#tab-1" aria-selected="true"
                                                                   role="tab"><h4>Modisit</h4></a></li>
                 <li class="nav-item col-3" role="presentation"><a class="nav-link main-color" data-bs-toggle="tab"

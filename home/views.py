@@ -39,6 +39,7 @@ class AllRecipes(View):
     def get_context_data(self, **kwargs):
         AllRecipesObjects = Recipe.objects.all()
         return {
+            'title': 'Все рецепты',
             'media': MEDIA_URL,
             'recipes': AllRecipesObjects
         }
@@ -54,9 +55,17 @@ class GetRecipe(View):
         CurrentRecipe = Recipe.objects.get(url=recipe)
         CurrentRecipe.views += 1
         CurrentRecipe.save()
+        steps = []
+        StepNumber = 1
+        for step in CurrentRecipe.steps.split("\n"):
+            steps.append({'step': step, 'num': StepNumber})
+            StepNumber += 1
         return {
+            'title': f'Рецепт : {CurrentRecipe.title}',
             'media': MEDIA_URL,
-            'recipe': CurrentRecipe
+            'recipe': CurrentRecipe,
+            'ingredients': CurrentRecipe.ingredients.split("\n"),
+            'steps': steps
         }
 
     def get(self, request, recipe):
