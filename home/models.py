@@ -69,14 +69,15 @@ class Recipe(models.Model):
     preview_photo = models.ImageField(upload_to=path_and_rename)
     views = models.IntegerField(default=0)
     published = models.DateTimeField(auto_now_add=True)
-    url = models.CharField(max_length=150, unique=True)
+    url = models.CharField(max_length=150, unique=True, null=False, blank=True)
     kitchen = models.ForeignKey(Type_of_kitchen, on_delete=models.PROTECT, default=1)
 
     def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
-        self.url = RuTextToSlug(self.title)
+        self.url = RuTextToSlug(self.title) + f"_{self.pk}"
+
         super().save(*args, **kwargs)
 
     class Meta:

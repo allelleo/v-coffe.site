@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <section id="blog" class="blog">
+        <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+            <div class="row gy-4 posts-list">
+                {% for recipe in recipes %}
+                <div class="col-xl-4 col-md-6">
+                    <div class="post-item position-relative h-100">
+                        <div class="post-img position-relative overflow-hidden"><img src="{{ media }}{{ recipe.preview_photo }}"
+                                                                                     class="img-fluid" alt=""> <span
+                                class="post-date">{{ recipe.published }}</span></div>
+                        <div class="post-content d-flex flex-column"><h3 class="post-title">{{ recipe.title }}</h3>
+                            <div class="meta d-flex align-items-center">
+                                <div class="d-flex align-items-center"><i class="bi bi-person"></i> <span class="ps-2">{{ recipe.author_name }}</span>
+                                </div>
+                                <span class="px-3 text-black-50">/</span>
+                                <div class="d-flex align-items-center"><img src="{% static 'img/icons/Recipe_description/level.png' %}"  height="16" alt="" class="main-color"><span class="ps-2">{{ recipe.complexity }}</span>
+                                </div>
+                            </div>
+                               <div class="meta d-flex align-items-center">
+                                <div class="d-flex align-items-center"><img src="{% static 'img/icons/Recipe_description/eye.png' %}" alt="" height="16"><span class="ps-2">{{ recipe.views }}</span>
+                                </div>
+                                <span class="px-3 text-black-50">/</span>
+                                <div class="d-flex align-items-center"><img src="{% static 'img/icons/Recipe_description/timer.png' %}"  height="16" alt="" class="main-color"><span class="ps-2">{{ recipe.cooking_time }} мин.</span>
+                                </div>
+                            </div>
+                            <p> {{ recipe.quote|truncatewords:25  }}</p>
+                            <hr>
+                            <a href="{% url 'get_recipe' recipe.url %}" class="readmore stretched-link"><span>Читать!</span><i
+                                    class="bi bi-arrow-right"></i></a></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="blog-pagination">
+                <ul class="justify-content-center">
+                    <li><a href="#">1</a></li>
+                    <li class="active"><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}
